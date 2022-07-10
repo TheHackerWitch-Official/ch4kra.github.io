@@ -1,16 +1,16 @@
-title: Victoria M. Galvan | InfoSec Blog
+title: The Hacker Witch | InfoSec Compendium
 description: > # this means to ignore newlines until "baseurl:"
- Victoria M. Galvan | Security Researcher | InfoSec blog
+  The Hacker Witch is a compendium of information security knowledge authored by Victoria M. Galvan. 
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-site-twitter: #if your site has a twitter account, enter it here
+site-twitter: thehackerwitch #if your site has a twitter account, enter it here
 
 # Author Settings
-author: Victoria M. Galvan # add your name
+author: The Hacker Witch # add your name
 author-img: victoriamgalvan.jpg  # add your photo
-about-author: Security Researcher | Pen Tester in Training | Cat Mom # add description
-social-twitter: victoriamgalvan # add your Twitter handle
+about-author: Pen Tester in Training | Cat Mom | Mystical Being # add description
+social-twitter: thehackerwitch # add your Twitter handle
 # social-facebook: # add your Facebook handle
 social-github: ch4kra # add your Github handle
 social-linkedin: victoriamgalvan # add your Linkedin handle
