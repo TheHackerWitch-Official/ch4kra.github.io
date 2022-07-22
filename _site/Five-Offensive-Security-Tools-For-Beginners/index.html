@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Five Offensive Security Tools For Beginners - The Hacker Witch | InfoSec Compendium</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="The Hacker Witch | InfoSec Compendium" property="og:site_name">
+  
+    <meta content="Five Offensive Security Tools For Beginners" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="New to Offensive Security? Learn about 5 tools to get a jump start on your hacker journey!" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/Five-Offensive-Security-Tools-For-Beginners/" property="og:url">
+  
+  
+    <meta content="2022-07-21T01:00:00-04:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/victoriamgalvan.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="Blog" property="article:tag">
+    
+    <meta content="InfoSec" property="article:tag">
+    
+    <meta content="Offensive" property="article:tag">
+    
+    <meta content="Tooling" property="article:tag">
+    
+    <meta content="victoriamgalvan" property="article:tag">
+    
+    <meta content="The Hacker Witch" property="article:tag">
+    
+    <meta content="Beginner Friendly" property="article:tag">
+    
+    <meta content="Burp Suite" property="article:tag">
+    
+    <meta content="Nmap" property="article:tag">
+    
+    <meta content="Nuclei" property="article:tag">
+    
+    <meta content="John The Ripper" property="article:tag">
+    
+    <meta content="Metasploit" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@thehackerwitch">
+    <meta name="twitter:creator" content="@thehackerwitch">
+  
+    <meta name="twitter:title" content="Five Offensive Security Tools For Beginners">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/Five-Offensive-Security-Tools-For-Beginners/">
+  
+  
+    <meta name="twitter:description" content="New to Offensive Security? Learn about 5 tools to get a jump start on your hacker journey!">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/victoriamgalvan.jpg">
+  
+
+	<meta name="description" content="New to Offensive Security? Learn about 5 tools to get a jump start on your hacker journey!">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-touch-icon-144x144.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700|Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/victoriamgalvan.jpg" alt="The Hacker Witch"></a>
+      </div>
+      <div class="author-name">The Hacker Witch</div>
+      <p>Threat Hunter in Training | Cat Mom | Mystical af</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+        
+          <li><a href="https://twitter.com/thehackerwitch" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        
+       
+          <li class="github"><a href="http://github.com/ch4kra" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/in/victoriamgalvan" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        
+     </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2022 &copy; The Hacker Witch</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Five Offensive Security Tools For Beginners</h1>
+        <div class="page-date"><span>2022, Jul 21&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>In this post, you’ll be introduced to five essential offensive security tools that will provide great groundwork for a career in information security. While not extensive, this list is diverse and a great place to start learning about tooling! Let’s jump into it!</p>
+
+<h2 id="1-burp-suite">1. Burp Suite</h2>
+<p><strong>Price:</strong> Free - $400/year <br />
+<strong>Publisher:</strong> PortSwigger <br />
+<strong>Primary Use Cases:</strong> Web application scanning, intercepting and modifying requests, fuzzing</p>
+
+<p>Known as the hacker’s Swiss Army Knife, Burp Suite is a penetration testing framework designed to aid mobile and web application assessments. It has powerful proxying, scoping, and attacking features that make it invaluable during engagements.</p>
+
+<p>Burp Suite comes in two forms:</p>
+<ul>
+  <li>Community (Free)</li>
+  <li>Pro ($400/year)</li>
+</ul>
+
+<p>I recommend downloading the Community edition and setting up Burp’s proxy (follow <a href="https://portswigger.net/burp/documentation/desktop/tools/proxy/getting-started">this</a> guide). Like all the tools in this post, the best way to learn Burp is by using it. I learned by using Burp to analyze web traffic on retired Hack The Box machines, but do what works best for you! There is no “right” way to learn.</p>
+
+<p><a href="https://portswigger.net/burp/communitydownload">Get BurpSuite</a></p>
+
+<h2 id="2-nmap">2. Nmap</h2>
+<p><strong>Price:</strong> Free <br />
+<strong>Creator:</strong> Gordon Lyon (aka Fyodor Vaskovich) <br />
+<strong>Primary Use Cases:</strong> Port scanning, host discovery, version identification</p>
+
+<p>Nmap, short for “Network Mapper,” is a command line utility used for network discovery and security auditing. Nmap is a great tool for discovering open ports, operating systems, and firewalls. It is one of the first tools I use when conducting network enumeration. Nmap gives you a really good idea of a given host’s attack surface and is simple to use.</p>
+
+<p><a href="https://www.stationx.net/nmap-cheat-sheet/">This</a> is my favorite nmap cheatsheet. Give this tool a go the next time you need to gently (or not so gently) scan a network. Excellent enumeration is the key to a fantastic engagement.</p>
+
+<p>Pro Tip: use <code class="language-plaintext highlighter-rouge">-oX filename</code> to save nmap results to an XML file.</p>
+
+<p><a href="https://nmap.org/download">Get Nmap</a></p>
+
+<h2 id="3-nuclei">3. Nuclei</h2>
+<p><strong>Price:</strong> Free <br />
+<strong>Publisher:</strong> Project Discovery <br />
+<strong>Primary Use Cases:</strong> Vulnerability scanning</p>
+
+<p>Nuclei is an efficient vulnerability scanner written in Go. Users can create or use default YAML templates to quickly scan hosts for known vulnerabilities. Nuclei is excellent for quickly scanning target systems and obtaining useful output.</p>
+
+<p><a href="https://github.com/projectdiscovery/nuclei">Get Nuclei</a></p>
+
+<h2 id="4-john-the-ripper">4. John The Ripper</h2>
+<p><strong>Price:</strong> Free <br />
+<strong>Publisher:</strong> Openwall <br />
+<strong>Primary Use Cases:</strong> Password cracking</p>
+
+<p>John the Ripper is an insanely powerful password cracking utility. It is an <em>essential</em> part of any hacker’s toolbox. John can conduct a variety of password attacks, supports hundreds of hash and cipher types, and is a hands-down fun tool to use. John is also great for cracking compressed file types like .zip and .rar. It is a one-size-fits-all password cracker and a <strong>must-know</strong> tool.</p>
+
+<p><a href="https://www.openwall.com/john/">Get John The Ripper</a></p>
+
+<h2 id="5-metasploit-framework">5. Metasploit Framework</h2>
+<p><strong>Price:</strong> Free - $$$ <br />
+<strong>Publisher:</strong> Rapid7 <br />
+<strong>Primary Use Cases:</strong> Vulnerability exploitation, command and control, vulnerbility scanning</p>
+
+<p>Metasploit is one of the most powerful penetration testing tools you can add to your toolkit. It is a penetration testing platform that allows researchers to find, exploit, and learn about vulnerabilities. Metasploit can feel like “cheating” because of how simple it is to use. Gaining a foothold can be as easy as searching for a vulnerability, staging it in Metasploit, and clicking Enter.</p>
+
+<p>Metasploit is excellent and efficient, but <em>please</em> research vulnerabilities before exploiting them. It is important to understand what an exploit does before using it. I get it, exploits are rarely simple to read, but Metasploit + a bit of research will teach you far more than Metasploit alone.</p>
+
+<p><a href="https://www.metasploit.com/download">Get Metasploit Framework</a></p>
+
+<p>Thanks for giving this post a read! If you found it useful, consider giving it a share :) Until next time, hackers!</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Five Offensive Security Tools For Beginners&url=http://localhost:4000/Five-Offensive-Security-Tools-For-Beginners/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/Five-Offensive-Security-Tools-For-Beginners/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/Five-Offensive-Security-Tools-For-Beginners/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#Blog" class="tag">&#35; Blog</a>
+          
+            <a href="/tags#InfoSec" class="tag">&#35; InfoSec</a>
+          
+            <a href="/tags#Offensive" class="tag">&#35; Offensive</a>
+          
+            <a href="/tags#Tooling" class="tag">&#35; Tooling</a>
+          
+            <a href="/tags#victoriamgalvan" class="tag">&#35; victoriamgalvan</a>
+          
+            <a href="/tags#The Hacker Witch" class="tag">&#35; The Hacker Witch</a>
+          
+            <a href="/tags#Beginner Friendly" class="tag">&#35; Beginner Friendly</a>
+          
+            <a href="/tags#Burp Suite" class="tag">&#35; Burp Suite</a>
+          
+            <a href="/tags#Nmap" class="tag">&#35; Nmap</a>
+          
+            <a href="/tags#Nuclei" class="tag">&#35; Nuclei</a>
+          
+            <a href="/tags#John The Ripper" class="tag">&#35; John The Ripper</a>
+          
+            <a href="/tags#Metasploit" class="tag">&#35; Metasploit</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>
