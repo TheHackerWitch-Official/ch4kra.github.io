@@ -2,39 +2,56 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>The Hacker Witch | InfoSec Compendium</title>
+	<title>HTB Writeup: baby BoneChewerCon - The Hacker Witch | InfoSec Compendium</title>
 
   <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
 
     <meta content="The Hacker Witch | InfoSec Compendium" property="og:site_name">
   
-    <meta content="The Hacker Witch | InfoSec Compendium" property="og:title">
+    <meta content="HTB Writeup: baby BoneChewerCon" property="og:title">
   
   
-    <meta content="website" property="og:type">
+    <meta content="article" property="og:type">
   
   
     <meta content="The Hacker Witch is a compendium of information security knowledge authored by Victoria M. Galvan. 
 " property="og:description">
   
   
-    <meta content="http://localhost:4000/" property="og:url">
+    <meta content="http://localhost:4000/HTB-Writeup-baby-BoneChewerCon/" property="og:url">
   
+  
+    <meta content="2022-07-24T10:00:00-04:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
   
   
     <meta content="http://localhost:4000/assets/img/victoriamgalvan.jpg" property="og:image">
   
   
+    
+  
+  
+    
+    <meta content="HTB" property="article:tag">
+    
+    <meta content="Writeup" property="article:tag">
+    
+    <meta content="baby BoneChewerCon" property="article:tag">
+    
+    <meta content="debugger" property="article:tag">
+    
+    <meta content="OWASP Top 10" property="article:tag">
+    
   
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@thehackerwitch">
     <meta name="twitter:creator" content="@thehackerwitch">
   
-    <meta name="twitter:title" content="The Hacker Witch | InfoSec Compendium">
+    <meta name="twitter:title" content="HTB Writeup: baby BoneChewerCon">
   
   
-    <meta name="twitter:url" content="http://localhost:4000/">
+    <meta name="twitter:url" content="http://localhost:4000/HTB-Writeup-baby-BoneChewerCon/">
   
   
     <meta name="twitter:description" content="The Hacker Witch is a compendium of information security knowledge authored by Victoria M. Galvan. 
@@ -100,53 +117,61 @@
   </footer> <!-- End Footer -->
 </aside> <!-- End Sidebar -->
 <div class="content-box clearfix">
-  
-<article class="post">
-  
-  
-  <div class="post-content">
-    <h2 class="post-title"><a href="/HTB-Writeup-baby-BoneChewerCon/">HTB Writeup: baby BoneChewerCon</a></h2>
-    <p>To solve this challenge, navigate to the webpage and enter any data in the input...</p>
-    <span class="post-date">2022, Jul 24&nbsp;&nbsp;&nbsp;—&nbsp;</span>
-    <span class="post-words">1 minute read</span>
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">HTB Writeup: baby BoneChewerCon</h1>
+        <div class="page-date"><span>2022, Jul 24&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>To solve this challenge, navigate to the webpage and enter any data in the input box. I simply put “The Hacker Witch.”</p>
+
+<p>Press “Register Me”</p>
+
+<p><img src="/assets/img/input-bb-bonechewer.png" alt="Press &quot;Register Me&quot;" /></p>
+
+<p>This will lead you to an error page.</p>
+
+<p><img src="/assets/img/error-bb-bonechewer.png" alt="Error Page" /></p>
+
+<p>Scroll through the error message until you see the <code class="language-plaintext highlighter-rouge">APP_KEY</code> field. That’s your flag!</p>
+
+<p><img src="/assets/img/flag-bb-bonechewer.png" alt="Flag" /></p>
+
+<p>Happy hacking :)</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=HTB Writeup: baby BoneChewerCon&url=http://localhost:4000/HTB-Writeup-baby-BoneChewerCon/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/HTB-Writeup-baby-BoneChewerCon/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/HTB-Writeup-baby-BoneChewerCon/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#HTB" class="tag">&#35; HTB</a>
+          
+            <a href="/tags#Writeup" class="tag">&#35; Writeup</a>
+          
+            <a href="/tags#baby BoneChewerCon" class="tag">&#35; baby BoneChewerCon</a>
+          
+            <a href="/tags#debugger" class="tag">&#35; debugger</a>
+          
+            <a href="/tags#OWASP Top 10" class="tag">&#35; OWASP Top 10</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
   </div>
-</article>
+</section> <!-- End Comment Area -->
 
-<article class="post">
-  
-  
-  <div class="post-content">
-    <h2 class="post-title"><a href="/Five-Offensive-Security-Tools-For-Beginners/">Five Offensive Security Tools For Beginners</a></h2>
-    <p>In this post, you’ll be introduced to five essential offensive security tools that will provide...</p>
-    <span class="post-date">2022, Jul 21&nbsp;&nbsp;&nbsp;—&nbsp;</span>
-    <span class="post-words">3 minute read</span>
-  </div>
-</article>
-
-<article class="post">
-  
-  
-  <div class="post-content">
-    <h2 class="post-title"><a href="/welcome-fancy-an-introduction/">Welcome! Fancy An Introduction?</a></h2>
-    <p>Hi, I’m The Hacker Witch! I’m a fifth-year student at Western Governor’s University (previously UCF,...</p>
-    <span class="post-date">2022, Jul 10&nbsp;&nbsp;&nbsp;—&nbsp;</span>
-    <span class="post-words">1 minute read</span>
-  </div>
-</article>
-
-
-<div class="container">
-  <nav class="pagination" role="pagination">
-    <ul>
-      
-
-      
-      
-      
-    </ul>
-  </nav>
-</div>
-
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
 
 </div>
 
