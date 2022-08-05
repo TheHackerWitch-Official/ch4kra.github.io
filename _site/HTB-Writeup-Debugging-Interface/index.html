@@ -131,18 +131,18 @@
 <h2 id="description">Description</h2>
 <p>We accessed the embedded device’s asynchronous serial debugging interface while it was operational and captured some messages that were being transmitted over it. Can you decode them?</p>
 
-<h2 id="step-1-obtain-vdebugging_interface_signalsal">Step 1: Obtain vdebugging_interface_signal.sal</h2>
+<h2 id="step-1-obtain-debugging_interface_signalsal">Step 1: Obtain debugging_interface_signal.sal</h2>
 
 <p>Download the zip file from the challenge portal, and unzip it. The password is <code class="language-plaintext highlighter-rouge">hackthebox</code>. You will see <code class="language-plaintext highlighter-rouge">debugging_interface_signal.sal</code></p>
 
 <h2 id="step-2-unzip-the-sal-file">Step 2: Unzip the .sal file</h2>
 
-<p>I started analyzing the file by running the <code class="language-plaintext highlighter-rouge">file</code> command on the <code class="language-plaintext highlighter-rouge">debugging_interface_signal.sal</code>. This revealed that the file contains some archived data.</p>
+<p>I started my analysis by running the <code class="language-plaintext highlighter-rouge">file</code> command on <code class="language-plaintext highlighter-rouge">debugging_interface_signal.sal</code>. This revealed that the file contains some archived data.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─$ file debugging_interface_signal.sal                                                                
 debugging_interface_signal.sal: Zip archive data, at least v2.0 to extract, compression method=deflate
 </code></pre></div></div>
-<p>Upon unzipping the .sal file, I received two additional files:</p>
+<p>Upon unzipping debugging_interface_signal.sal,  I received two additional files:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>digital-0.bin
 meta.json

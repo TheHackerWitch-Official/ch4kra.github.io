@@ -13,20 +13,20 @@ Debugging Interface is a HackTheBox challenge created by diogt. It is part of th
 We accessed the embedded device's asynchronous serial debugging interface while it was operational and captured some messages that were being transmitted over it. Can you decode them?
 
 
-## Step 1: Obtain vdebugging_interface_signal.sal 
+## Step 1: Obtain debugging_interface_signal.sal 
 
 Download the zip file from the challenge portal, and unzip it. The password is `hackthebox`. You will see `debugging_interface_signal.sal`
 
 
 ## Step 2: Unzip the .sal file
 
-I started analyzing the file by running the `file` command on the `debugging_interface_signal.sal`. This revealed that the file contains some archived data.
+I started my analysis by running the `file` command on `debugging_interface_signal.sal`. This revealed that the file contains some archived data.
 
 ```
 └─$ file debugging_interface_signal.sal                                                                
 debugging_interface_signal.sal: Zip archive data, at least v2.0 to extract, compression method=deflate
 ```
-Upon unzipping the .sal file, I received two additional files: 
+Upon unzipping debugging_interface_signal.sal,  I received two additional files: 
 
 ```
 digital-0.bin
