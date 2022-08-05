@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>HTB Writeup: Debugging Interface - The Hacker Witch | InfoSec Compendium</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="The Hacker Witch | InfoSec Compendium" property="og:site_name">
+  
+    <meta content="HTB Writeup: Debugging Interface" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="The Hacker Witch is a compendium of information security knowledge authored by Victoria M. Galvan. 
+" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/HTB-Writeup-Debugging-Interface/" property="og:url">
+  
+  
+    <meta content="2022-08-04T10:00:00-04:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/victoriamgalvan.jpg" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="HTB" property="article:tag">
+    
+    <meta content="Writeup" property="article:tag">
+    
+    <meta content="Hardware Hacking" property="article:tag">
+    
+    <meta content="Debugging Interface" property="article:tag">
+    
+    <meta content="SALEAE" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@thehackerwitch">
+    <meta name="twitter:creator" content="@thehackerwitch">
+  
+    <meta name="twitter:title" content="HTB Writeup: Debugging Interface">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/HTB-Writeup-Debugging-Interface/">
+  
+  
+    <meta name="twitter:description" content="The Hacker Witch is a compendium of information security knowledge authored by Victoria M. Galvan. 
+">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/victoriamgalvan.jpg">
+  
+
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-touch-icon-144x144.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700|Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/victoriamgalvan.jpg" alt="The Hacker Witch"></a>
+      </div>
+      <div class="author-name">The Hacker Witch</div>
+      <p>Threat Hunter in Training | Cat Mom | Mystical af</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+        
+          <li><a href="https://twitter.com/thehackerwitch" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        
+       
+          <li class="github"><a href="http://github.com/ch4kra" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/in/victoriamgalvan" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        
+     </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2022 &copy; The Hacker Witch</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">HTB Writeup: Debugging Interface</h1>
+        <div class="page-date"><span>2022, Aug 04&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>Debugging Interface is a HackTheBox challenge created by diogt. It is part of the Intro to Hardware Hacking track.</p>
+
+<h2 id="description">Description</h2>
+<p>We accessed the embedded device’s asynchronous serial debugging interface while it was operational and captured some messages that were being transmitted over it. Can you decode them?</p>
+
+<h2 id="step-1-obtain-vdebugging_interface_signalsal">Step 1: Obtain vdebugging_interface_signal.sal</h2>
+
+<p>Download the zip file from the challenge portal, and unzip it. The password is <code class="language-plaintext highlighter-rouge">hackthebox</code>. You will see <code class="language-plaintext highlighter-rouge">debugging_interface_signal.sal</code></p>
+
+<h2 id="step-2-unzip-the-sal-file">Step 2: Unzip the .sal file</h2>
+
+<p>I started analyzing the file by running the <code class="language-plaintext highlighter-rouge">file</code> command on the <code class="language-plaintext highlighter-rouge">debugging_interface_signal.sal</code>. This revealed that the file contains some archived data.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─$ file debugging_interface_signal.sal                                                                
+debugging_interface_signal.sal: Zip archive data, at least v2.0 to extract, compression method=deflate
+</code></pre></div></div>
+<p>Upon unzipping the .sal file, I received two additional files:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>digital-0.bin
+meta.json
+</code></pre></div></div>
+
+<p>meta.json had a bunch of data, but none of it seemed particularly useful. So, I moved on to digital-0.bin.</p>
+
+<h2 id="step-3-analyzing-digital-0bin">Step 3: Analyzing digital-0.bin</h2>
+<p>At the beginning of my analysis, I ran the <code class="language-plaintext highlighter-rouge">strings</code> command to get an idea of what is in the file. I immediately saw an interesting header.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>└─$ strings digital-0.bin | head
+&lt;SALEAE&gt;
+&lt;snip&gt;
+</code></pre></div></div>
+
+<h2 id="step-4-using-saleae-logic-analyzer">Step 4. Using SALEAE Logic Analyzer</h2>
+
+<p>SALEAE is a logic analyzer. So, I downloaded the demo, and imported the .sal file.</p>
+
+<p>I went to SALEAE’s analyzer tool, clicked on <code class="language-plaintext highlighter-rouge">Async Serial</code>, and selected <code class="language-plaintext highlighter-rouge">00. Channel 0</code> as the Input Channel. This is when I discovered that I also needed a Bit Rate (Bit/s) value.</p>
+
+<p><img src="/assets/img/initial-settings.png" alt="SALEAE Bitrate" /></p>
+
+<p>I calculated the bit rate by going to the start of the data. I hovered my mouse over the first block of data and saw a value of <code class="language-plaintext highlighter-rouge">32.02 µs</code>. However, that is microseonds, and SALEAE needs seconds. So, I divided 1,000,000 by 32.02 to get <code class="language-plaintext highlighter-rouge">31230 Bit/s</code>.</p>
+
+<p><img src="/assets/img/bitrate.png" alt="Get Bit Rate" /></p>
+
+<p>I then entered this into the Async Serial analyzer with the other default values and clicked <code class="language-plaintext highlighter-rouge">Save</code>.</p>
+
+<p><img src="/assets/img/saleae-settings.png" alt="Final Settings" /></p>
+
+<p>This decoded the data. To read it in plaintext, click on the <code class="language-plaintext highlighter-rouge">Terminal</code> button. The flag is at the bottom (not shown in the picture)!</p>
+
+<p><img src="/assets/img/saleae-flag.png" alt="Get Flag" /></p>
+
+<p>Happy hacking :)</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=HTB Writeup: Debugging Interface&url=http://localhost:4000/HTB-Writeup-Debugging-Interface/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/HTB-Writeup-Debugging-Interface/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/HTB-Writeup-Debugging-Interface/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#HTB" class="tag">&#35; HTB</a>
+          
+            <a href="/tags#Writeup" class="tag">&#35; Writeup</a>
+          
+            <a href="/tags#Hardware Hacking" class="tag">&#35; Hardware Hacking</a>
+          
+            <a href="/tags#Debugging Interface" class="tag">&#35; Debugging Interface</a>
+          
+            <a href="/tags#SALEAE" class="tag">&#35; SALEAE</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>
