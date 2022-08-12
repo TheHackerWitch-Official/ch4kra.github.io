@@ -164,19 +164,19 @@ meta.json
 
 <p>I went to SALEAE’s analyzer tool, clicked on <code class="language-plaintext highlighter-rouge">Async Serial</code>, and selected <code class="language-plaintext highlighter-rouge">00. Channel 0</code> as the Input Channel. This is when I discovered that I also needed a Bit Rate (Bit/s) value.</p>
 
-<p><img src="/assets/img/initial-settings.png" alt="SALEAE Bitrate" /></p>
+<p><img src="/assets/img/debugger/initial-settings.png" alt="SALEAE Bitrate" /></p>
 
 <p>I calculated the bit rate by going to the start of the data. I hovered my mouse over the first block of data and saw a value of <code class="language-plaintext highlighter-rouge">32.02 µs</code>. However, that is microseonds, and SALEAE needs seconds. So, I divided 1,000,000 by 32.02 to get <code class="language-plaintext highlighter-rouge">31230 Bit/s</code>.</p>
 
-<p><img src="/assets/img/bitrate.png" alt="Get Bit Rate" /></p>
+<p><img src="/assets/img/debugger/bitrate.png" alt="Get Bit Rate" /></p>
 
 <p>I then entered this into the Async Serial analyzer with the other default values and clicked <code class="language-plaintext highlighter-rouge">Save</code>.</p>
 
-<p><img src="/assets/img/saleae-settings.png" alt="Final Settings" /></p>
+<p><img src="/assets/img/debugger/saleae-settings.png" alt="Final Settings" /></p>
 
 <p>This decoded the data. To read it in plaintext, click on the <code class="language-plaintext highlighter-rouge">Terminal</code> button. The flag is at the bottom (not shown in the picture)!</p>
 
-<p><img src="/assets/img/saleae-flag.png" alt="Get Flag" /></p>
+<p><img src="/assets/img/debugger/saleae-flag.png" alt="Get Flag" /></p>
 
 <p>Happy hacking :)</p>
 

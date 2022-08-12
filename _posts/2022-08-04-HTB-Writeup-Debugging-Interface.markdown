@@ -51,20 +51,20 @@ SALEAE is a logic analyzer. So, I downloaded the demo, and imported the .sal fil
 
 I went to SALEAE's analyzer tool, clicked on `Async Serial`, and selected `00. Channel 0` as the Input Channel. This is when I discovered that I also needed a Bit Rate (Bit/s) value.  
 
-![SALEAE Bitrate]({{site.baseurl}}/assets/img/initial-settings.png)
+![SALEAE Bitrate]({{site.baseurl}}/assets/img/debugger/initial-settings.png)
 
 
 I calculated the bit rate by going to the start of the data. I hovered my mouse over the first block of data and saw a value of `32.02 µs`. However, that is microseonds, and SALEAE needs seconds. So, I divided 1,000,000 by 32.02 to get `31230 Bit/s`. 
 
-![Get Bit Rate]({{site.baseurl}}/assets/img/bitrate.png)
+![Get Bit Rate]({{site.baseurl}}/assets/img/debugger/bitrate.png)
 
 I then entered this into the Async Serial analyzer with the other default values and clicked `Save`.
 
-![Final Settings]({{site.baseurl}}/assets/img/saleae-settings.png)
+![Final Settings]({{site.baseurl}}/assets/img/debugger/saleae-settings.png)
 
 This decoded the data. To read it in plaintext, click on the `Terminal` button. The flag is at the bottom (not shown in the picture)! 
 
-![Get Flag]({{site.baseurl}}/assets/img/saleae-flag.png)
+![Get Flag]({{site.baseurl}}/assets/img/debugger/saleae-flag.png)
 
 Happy hacking :) 
 

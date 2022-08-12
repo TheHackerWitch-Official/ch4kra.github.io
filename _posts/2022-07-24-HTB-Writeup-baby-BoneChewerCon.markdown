@@ -10,16 +10,16 @@ To solve this challenge, navigate to the webpage and enter any data in the input
 
 Press "Register Me"
 
-![Press "Register Me"]({{site.baseurl}}/assets/img/input-bb-bonechewer.png)
+![Press "Register Me"]({{site.baseurl}}/assets/img/bonechewer/input-bb-bonechewer.png)
 
 
 This will lead you to an error page. 
 
-![Error Page]({{site.baseurl}}/assets/img/error-bb-bonechewer.png)
+![Error Page]({{site.baseurl}}/assets/img/bonechewer/error-bb-bonechewer.png)
 
 Scroll through the error message until you see the `APP_KEY` field. That's your flag! 
 
-![Flag]({{site.baseurl}}/assets/img/flag-bb-bonechewer.png)
+![Flag]({{site.baseurl}}/assets/img/bonechewer/flag-bb-bonechewer.png)
 
 Happy hacking :) 
 
