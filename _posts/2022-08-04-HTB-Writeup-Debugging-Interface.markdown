@@ -54,7 +54,7 @@ I went to SALEAE's analyzer tool, clicked on `Async Serial`, and selected `00. C
 ![SALEAE Bitrate]({{site.baseurl}}/assets/img/debugger/initial-settings.png)
 
 
-I calculated the bit rate by going to the start of the data. I hovered my mouse over the first block of data and saw a value of `32.02 µs`. However, that is microseonds, and SALEAE needs seconds. So, I divided 1,000,000 by 32.02 to get `31230 Bit/s`. 
+I calculated the bit rate by going to the start of the data. I hovered my mouse over the first block of data and saw a value of `32.02 µs`. However, that is microseconds, and SALEAE needs seconds. So, I divided 1,000,000 by 32.02 to get `31230 Bit/s`. 
 
 ![Get Bit Rate]({{site.baseurl}}/assets/img/debugger/bitrate.png)
 
