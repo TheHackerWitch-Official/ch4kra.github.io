@@ -3,13 +3,13 @@ description: > # this means to ignore newlines until "baseurl:"
   The Hacker Witch is a compendium of information security knowledge authored by Victoria M. Galvan. 
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://thehackerwitch.com" # the base hostname & protocol for your site, e.g. http://example.com
 site-twitter: thehackerwitch #if your site has a twitter account, enter it here
 
 # Author Settings
 author: The Hacker Witch # add your name
 author-img: victoriamgalvan.jpg  # add your photo
-about-author: Threat Hunter in Training | Cat Mom | Mystical af # add description
+about-author: Researcher | Cat Mom | Mystical af # add description
 social-twitter: thehackerwitch # add your Twitter handle
 # social-facebook: # add your Facebook handle
 social-github: ch4kra # add your Github handle
