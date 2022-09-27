@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Digging For Gold: DNS Enumeration - The Hacker Witch | InfoSec Compendium</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="The Hacker Witch | InfoSec Compendium" property="og:site_name">
+  
+    <meta content="Digging For Gold: DNS Enumeration" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="DNS is the backbone of the Internet. Read this post when you're ready to up your DNS enumeration skills!" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/Enumerating-DNS/" property="og:url">
+  
+  
+    <meta content="2022-09-25T10:00:00-04:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/dns-enum/header.png" property="og:image">
+  
+  
+    
+  
+  
+    
+    <meta content="Enumeration" property="article:tag">
+    
+    <meta content="DNS" property="article:tag">
+    
+    <meta content="Penetration Testing" property="article:tag">
+    
+    <meta content="Nmap" property="article:tag">
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@thehackerwitch">
+    <meta name="twitter:creator" content="@thehackerwitch">
+  
+    <meta name="twitter:title" content="Digging For Gold: DNS Enumeration">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/Enumerating-DNS/">
+  
+  
+    <meta name="twitter:description" content="DNS is the backbone of the Internet. Read this post when you're ready to up your DNS enumeration skills!">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/dns-enum/header.png">
+  
+
+	<meta name="description" content="DNS is the backbone of the Internet. Read this post when you're ready to up your DNS enumeration skills!">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-touch-icon-144x144.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700|Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/victoriamgalvan.jpg" alt="The Hacker Witch"></a>
+      </div>
+      <div class="author-name">The Hacker Witch</div>
+      <p>Researcher | Cat Mom | Mystical af</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+        
+          <li><a href="https://twitter.com/thehackerwitch" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        
+       
+          <li class="github"><a href="http://github.com/ch4kra" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/in/victoriamgalvan" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        
+     </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2022 &copy; The Hacker Witch</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    <div class="page-cover-image">
+      <figure>
+        <img class="page-image" src=/assets/img/dns-enum/header.png alt="Digging For Gold: DNS Enumeration">
+        
+      </figure>
+    </div> <!-- End Page Cover Image -->
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Digging For Gold: DNS Enumeration</h1>
+        <div class="page-date"><span>2022, Sep 25&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>DNS is the backbone of the Internet; knowing how to enumerate it is a necessary skill for anyone interested in Information Security or networking. Today, we’ll be exploring my favorite ways to probe DNS.</p>
+
+<p>Let’s get into it!</p>
+
+<h1 id="what-is-dns">What Is DNS?</h1>
+<p>DNS stands for Domain Name System. At a high-level, it works like the Internet’s phonebook. I like to think about it like this: humans navigate the Internet using domain names (ex. google.com). These domains have associated IP addresses (ex. 142.250.74.14). DNS translates domain names to IP addresses to make the Internet easily navigable.</p>
+
+<p>The default port for DNS is 53.</p>
+
+<h1 id="why-you-should-enumerate-dns">Why You Should Enumerate DNS</h1>
+<p>DNS should be enumerated during every pen test because it can reveal the true extent of an organization’s attack surface. By enumerating DNS, you can gather information and sub-domains that are not available through other enumeration methods. Having a clear idea of the attack surface will save you time and aid you in developing a methodical plan of attack.</p>
+
+<p>So, without further ado, let’s enumerate! I will be using <code class="language-plaintext highlighter-rouge">hackthebox.eu</code> for this exercise.</p>
+
+<h2 id="finding-mail-servers">Finding Mail Servers</h2>
+<p>To find mail servers, use the <em>host</em> command:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">host -t mx hackthebox.eu
+</span></code></pre></div></div>
+
+<p><strong>Example: Using The host Command To Find Mail Servers</strong></p>
+
+<p><img src="/assets/img/dns-enum/find_mail_servers.png" alt="Find Mail Servers" /></p>
+
+<p>Alternatively, the <em>dig</em> command can be used:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">dig mx hackthebox.eu
+</span></code></pre></div></div>
+
+<h2 id="finding-name-servers">Finding Name Servers</h2>
+<p>To find nameservers, use the <em>host</em> command:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">host -t ns hackthebox.eu
+</span></code></pre></div></div>
+
+<p><strong>Example: Using The host Command To Find Name Servers</strong></p>
+
+<p><img src="/assets/img/dns-enum/find_nameservers.png" alt="Find Nameservers" /></p>
+
+<p>Once again, the <em>dig</em> command can be used:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">dig ns hackthebox.eu
+</span></code></pre></div></div>
+
+<h2 id="finding-subdomains">Finding Subdomains</h2>
+<p>The following bash script can be used to enumerate subdomains.</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">for sub in $</span><span class="o">(</span><span class="nb">cat</span> /path/to/wordlist<span class="o">)</span><span class="p">;</span><span class="k">do </span>dig <span class="nv">$sub</span>.domain.com @DNS_IP | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s1">';\|SOA'</span> | <span class="nb">sed</span> <span class="nt">-r</span> <span class="s1">'/^\s*$/d'</span> | <span class="nb">grep</span> <span class="nv">$sub</span> | <span class="nb">tee</span> <span class="nt">-a</span> subs.txt<span class="p">;</span><span class="k">done</span>
+</code></pre></div></div>
+
+<p><em>Note: there are many great tools for subdomain enumeration. Enumerating DNS to find subdomains can be a bit clunky. Use as needed</em></p>
+
+<h2 id="useful-nmap-scripts">Useful Nmap Scripts</h2>
+<p>Nmap is equipped with tons of tools to make your life easier. These are my favorites for enumerating DNS.</p>
+
+<p><strong>To enumerate common service records (SRV):</strong></p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='DOMAIN.COM'"
+</span></code></pre></div></div>
+
+<p><strong>To enumerate DNS names (also useful for subdomains):</strong></p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo nmap -sSU -p 53 TARGET --script dns-nsec-enum --script-args dns-nsec-enum.domains=DOMAIN.COM
+</span></code></pre></div></div>
+
+<h2 id="other-useful-tools">Other Useful Tools</h2>
+<ul>
+  <li><a href="https://dnsdumpster.com">DNS Dumpster</a></li>
+  <li>dnsrecon</li>
+  <li>subscraper</li>
+</ul>
+
+<p>I hope you found this post useful! Thanks for giving it a read. Happy hacking! :)</p>
+
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Digging For Gold: DNS Enumeration&url=http://localhost:4000/Enumerating-DNS/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/Enumerating-DNS/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+        </div>
+        <div class="page-tag">
+          
+            <a href="/tags#Enumeration" class="tag">&#35; Enumeration</a>
+          
+            <a href="/tags#DNS" class="tag">&#35; DNS</a>
+          
+            <a href="/tags#Penetration Testing" class="tag">&#35; Penetration Testing</a>
+          
+            <a href="/tags#Nmap" class="tag">&#35; Nmap</a>
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>
