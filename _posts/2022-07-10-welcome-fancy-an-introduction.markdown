@@ -3,6 +3,7 @@ layout: post
 title: "Welcome! Fancy An Introduction?"
 date: 2022-07-10 09:00:00 -0500
 description: Welcome to The Hacker Witch! Learn a little about my infosec journey and why I created this site.
+img: introduction/header.jpg
 tags: [Blog, Welcome, InfoSec, victoriamgalvan, ch4kra, The Hacker Witch]
 ---
 

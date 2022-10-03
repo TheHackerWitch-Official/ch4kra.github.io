@@ -3,6 +3,7 @@ layout: post
 title: "Five Offensive Security Tools For Beginners"
 date: 2022-07-21 00:00:00 -0500
 description: New to Offensive Security? Learn about 5 tools to get a jump start on your hacker journey! 
+img: five-tools/header.jpg
 tags: [Blog, InfoSec, Offensive, Tooling, victoriamgalvan, The Hacker Witch, Beginner Friendly, Burp Suite, Nmap, Nuclei, John The Ripper, Metasploit]
 ---
 
