@@ -4,7 +4,7 @@ title: "HTB Writeup: Debugging Interface"
 date: 2022-08-04 09:00:00 -0500
 description: Debugging Interface is a HackTheBox challenge created by diogt. It is part of the "Intro To Hardware Hacking" track.
 img: debugger/header.png
-tags: [HTB, Writeup, Hardware Hacking, Debugging Interface, SALEAE]
+tags: [HackTheBox, HTB, Writeup, Hardware Hacking, Debugging Interface, SALEAE]
 ---
 Debugging Interface is a HackTheBox challenge created by diogt. It is part of the "Intro to Hardware Hacking" track.
 

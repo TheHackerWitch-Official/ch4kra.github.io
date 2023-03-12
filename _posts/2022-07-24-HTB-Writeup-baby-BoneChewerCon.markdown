@@ -4,7 +4,7 @@ title: "HTB Writeup: baby BoneChewerCon"
 date: 2022-07-24 09:00:00 -0500
 description: Baby BoneChewerCon is a HackTheBox challenge that involves parsing information from a debugger.
 img: bonechewer/header.png
-tags: [HTB, Writeup, baby BoneChewerCon, debugger, OWASP Top 10]
+tags: [HackTheBox, HTB, Writeup, baby BoneChewerCon, debugger, OWASP Top 10]
 ---
 
 To solve this challenge, navigate to the webpage and enter any data in the input box. I simply put "The Hacker Witch."

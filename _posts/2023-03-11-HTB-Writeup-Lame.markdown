@@ -4,7 +4,7 @@ title: "HTB Writeup: Lame"
 date: 2023-03-12 09:00:00 -0500                                              
 description: Lame is an easy HackTheBox machine created by ch4p. It involves exploiting a vulnerable samba server.                                            
 img: htb-lame/lame-info-card.png                                                 
-tags: [HackTheBox, Lame, Samba, Writeup, CVE-2007-2447]
+tags: [HackTheBox, HTB, Lame, Samba, Writeup, CVE-2007-2447]
 ---
 
 Lame is an easy HackTheBox machine created by [ch4p](https://app.hackthebox.com/users/1). It involves some simple enumeration and the exploitation of a known Samba vulnerability.
