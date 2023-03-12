@@ -78,7 +78,7 @@ You should get something that looks like this:
 
 ![msf options]({{site.baseurl}}/assets/img/htb-lame/msf-options.png)   
 
-From here, I'll set the `LHOSTS` and `RHOSTS` parameters. 
+From here, I'll set the `LHOST` and `RHOSTS` parameters. 
 
 - LHOST is your listening address. For most people, this will be equal to your `tun0` value (you can find this by using the `ifconfig` command). 
 - RHOSTS is the machine's IP address. 
