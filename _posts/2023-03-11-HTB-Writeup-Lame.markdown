@@ -89,7 +89,7 @@ _Note: Sub \<ip_address\> for Lame's IP address._
 
 ```
 set RHOSTS <ip_address>
-set LHOSTS tun0
+set LHOST tun0
 ```
 
 Once those values are set, we can exploit the machine! Do this by typing `exploit` and pressing `Enter`! If all went well, you should have a root shell on the machine (A.K.A INFINITE POWER :joy:).
