@@ -437,7 +437,7 @@ template {
 }
 
 .highlight {
-  background-color: #faf9f9;
+  background-color: #222421;
   -webkit-border-radius: 3px;
           border-radius: 3px;
   margin: 0;
@@ -446,7 +446,7 @@ template {
 .highlighter-rouge {
   color: #ce887b;
   font-weight: 400;
-  border: 1px solid #607D8B;
+  border: 1px solid #5e504d;
   -webkit-border-radius: 3px;
           border-radius: 3px;
   padding: 0.1rem 0.5rem;
@@ -526,12 +526,12 @@ template {
 
 /* Generic.Inserted */
 .highlight .go {
-  color: #aaa;
+  color: #ce887b;
 }
 
 /* Generic.Output */
 .highlight .gp {
-  color: #009;
+  color: #3190b0;
 }
 
 /* Generic.Prompt */
@@ -642,7 +642,7 @@ template {
 
 /* Name.Tag */
 .highlight .nv {
-  color: #033;
+  color: #068f8f;
 }
 
 /* Name.Variable */
@@ -774,8 +774,8 @@ html {
 
 body {
   font-family: 'Lato', sans-serif;
-  color: #515151;
-  background-color: #fbfbfb;
+  color: #b6bac1; 
+  background-color: #181823; 
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -889,7 +889,7 @@ table tfoot td {
 }
 
 .post, .article-page {
-  background-color: #fff;
+  background-color: #181823;
 }
 
 ::-moz-selection {
@@ -1164,7 +1164,7 @@ footer .copyright {
 .post .post-content .post-title a {
   font-family: 'PT Serif', serif;
   text-decoration: none;
-  color: #263959;
+  color: #ce887b;
 }
 
 .post .post-content p {
@@ -1297,9 +1297,9 @@ a.newer-posts:hover {
   font-size: 10px;
   padding: 5px 10px;
   margin-left: 5px;
-  color: #263959;
+  color: #ce887b;
   text-transform: uppercase;
-  border: 1px solid #263959;
+  border: 1px solid #ce887b;
 }
 
 .page-footer .page-tag a:hover {
