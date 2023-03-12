@@ -192,7 +192,7 @@
 </span></code></pre></div></div>
 
 <p><strong>To enumerate DNS names (also useful for subdomains):</strong></p>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo nmap -sSU -p 53 TARGET --script dns-nsec-enum --script-args dns-nsec-enum.domains=DOMAIN.COM
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo nmap -sU -p 53 TARGET --script dns-nsec-enum --script-args dns-nsec-enum.domains=DOMAIN.COM
 </span></code></pre></div></div>
 
 <h2 id="other-useful-tools">Other Useful Tools</h2>

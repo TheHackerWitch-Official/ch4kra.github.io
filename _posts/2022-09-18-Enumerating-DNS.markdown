@@ -70,7 +70,7 @@ nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='DOMAIN.COM'"
 
 **To enumerate DNS names (also useful for subdomains):**
 ```console
-sudo nmap -sSU -p 53 TARGET --script dns-nsec-enum --script-args dns-nsec-enum.domains=DOMAIN.COM
+sudo nmap -sU -p 53 TARGET --script dns-nsec-enum --script-args dns-nsec-enum.domains=DOMAIN.COM
 ```
 
 ## Other Useful Tools 
