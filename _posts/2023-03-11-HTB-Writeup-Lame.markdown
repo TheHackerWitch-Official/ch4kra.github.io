@@ -102,7 +102,7 @@ python -c 'import pty; pty.spawn("/bin/bash");'
 From here, you can collect the user and root flags by running the following commands.
 
 ```
-[User] cat cat /home/makis/user.txt
+[User] cat /home/makis/user.txt
 [Root] cat /root/root.txt
 ```
 
