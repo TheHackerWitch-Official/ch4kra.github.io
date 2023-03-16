@@ -215,7 +215,7 @@ ross     tty7     :0               13:30   40:07   4.86s  0.04s /usr/libexec/gno
 We can now use the `xwd` command to take a screenshot and place the result in the `/tmp` directory. 
 
 ```sh-session
-xwd -root -screen -display :0 > /tmp/screen.xwd
+xwd -root -screen -display :0 > /tmp/screenshot.xwd
 ```
 
 To retrieve the screenshot, set up a python server in the `/tmp` directory and then retrieve it on your host machine by using curl.
