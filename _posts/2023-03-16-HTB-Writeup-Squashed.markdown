@@ -55,7 +55,7 @@ We continue our recon by looking at the website. It appears to be static. There 
 ![Website]({{site.baseurl}}/assets/img/squashed/website.png)
 
 ## NFS
-Network File System (NFS) is a server that allows for the transfer of files between machines. It works on a direcory system. It is commonly exploited due to weak authorization and authentication. 
+Network File System (NFS) is a server that allows for the transfer of files between machines. It works on a directory system. It is commonly exploited due to weak authorization and authentication. 
 
 ### Enumerating NFS
 We can view the file shares by using the `showmount` command.
